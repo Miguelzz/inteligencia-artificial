@@ -1,41 +1,32 @@
+#
 
-def position(grid):
-    pos = ()
-    x, y = [0, 0]
 
-    for r in grid:
-        y = 0
-        for c in r:
-            if(c in 'd'):
-                pos = (x, y)
-            y += 1
-        x += 1
+def position(n,grid):
+    pos=()
+    for i in range(n):
+        if(pos): break
+        for j in range(5):
+            if(grid[i][j]=='p'):
+                pos = (i, j)
+                break
     return pos
 
 
 
-def next_move(br, bc, grid):
-    dr, dc = position(grid)
+def nextMove(n,br, bc, grid):
+    dr, dc = position(n,grid)
+    if(dc == bc and dr == br): result = 'CLEAN'
 
-    if(dc == bc and dr == br):
-        return 'CLEAN'
+    if(br > dr): return 'UP'
+    elif(br < dr): return 'DOWN'
 
-    if(br > dr):
-        return 'UP'
-    elif(br < dr):
-        return 'DOWN'
+    elif(bc > dc): return 'LEFT'
+    elif(bc < dc): return 'RIGHT'
 
-    if(bc > dc):
-        return 'LEFT'
-    elif(bc < dc):
-        return 'RIGHT'
-    
+n = int(input())
+r,c = [int(i) for i in input().strip().split()]
+grid = []
+for i in range(0, n):
+    grid.append(input())
 
-
-
-grid = ['-----', '---d-', '-----', '-----', '--b--' ]
-n = 5
-r,c = [4,2]
-
-
-print(next_move(r,c,grid))
+print(nextMove(n,r,c,grid))

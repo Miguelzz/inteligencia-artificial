@@ -13,7 +13,6 @@ def position(grid):
 
 def next_move(br, bc, grid):
     dr, dc = position(grid)
-    print(dr, dc)
     result = ''
     if(dc == bc and dr == br): result = 'CLEAN'
 
